@@ -12,12 +12,12 @@
 				v-for="(link, index) in links"
 				:key="index"
 			>
-				<a href="" class="menu__link">
+				<router-link :to="link.url" class="menu__link" active-class="active" exact>
 					<span class="menu__link-num">{{
 						formatLinkNum(index + 1)
 					}}</span>
 					<span class="menu__link-text">{{ link.text }}</span>
-				</a>
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -30,9 +30,9 @@ export default {
 		return {
 			links: [
 				{ text: "Главная", url: "/" },
-				{ text: "Обо мне", url: "/" },
-				{ text: "Работы", url: "/" },
-				{ text: "Контакты", url: "/" },
+				{ text: "Обо мне", url: "/about" },
+				{ text: "Работы", url: "/works" },
+				{ text: "Контакты", url: "/contacts" },
 			],
 		};
 	},

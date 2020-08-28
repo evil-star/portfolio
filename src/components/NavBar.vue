@@ -2,7 +2,7 @@
 	<header class="header">
 		<div class="container">
 			<div class="header__inner">
-				<logo></logo>
+				<Logo></Logo>
 				<div class="burger" @click="menuToggle">
 					<span></span><span></span>
 				</div>

@@ -4,9 +4,9 @@
 			<video
 				loop
 				muted
-				preload="none"
+				@mouseenter="playVideo"
+				@mouseleave="stopVideo"
 				ref="video"
-				v-observe-visibility="{ callback: videoVisibility }"
 			>
 				<source
 					:src="require(`@/assets/video/${video}.mp4`)"
@@ -53,13 +53,6 @@ export default {
 		initTilt() {
 			VanillaTilt.init(this.$refs.video, this.tiltOptions);
 		},
-		videoVisibility(isVisible, entry) {
-			if (isVisible) {
-				this.$refs.video.play();
-			} else {
-				this.$refs.video.pause();
-			}
-		},
 		parallax() {
 			if(window.innerWidth < 1200) return 0;
 
@@ -71,6 +64,12 @@ export default {
 
 			this.translateY = `translateY(${val}px)`;
 		},
+		playVideo() {
+			this.$refs.video.play();
+		},
+		stopVideo() {
+			this.$refs.video.pause();
+		}
 	},
 	components: { Button },
 	mounted() {

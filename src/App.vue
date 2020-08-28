@@ -3,17 +3,28 @@
 		<Menu></Menu>
 		<NavBar></NavBar>
 		<div id="main-scroll" ref="mainSroll">
-			<!-- <div id="nav">
-				<router-link to="/">Home</router-link> |
-				<router-link to="/about">About</router-link>
-			</div> -->
 			<div>
-				<router-view />
+				<transition name="page-slide" @beforeLeave="beforeLeave">
+					<router-view />
+				</transition>
 				<Footer></Footer>
 			</div>
 		</div>
 	</div>
 </template>
+
+<style lang="sass">
+.page-slide-enter-active,
+.page-slide-leave-active
+	transition-delay: .7s
+	transition-duration: 0.3s
+	transition-property: opacity
+	transition-timing-function: ease
+
+.page-slide-enter,
+.page-slide-leave-active
+	opacity: 0
+</style>
 
 <script>
 import "reset-css";
@@ -36,6 +47,9 @@ export default {
 		onPageScroll(status) {
 			this.scrollTop = status.offset.y;
 		},
+		beforeLeave() {
+			this.$store.commit("toggleMenu");
+		}
 	},
 	mounted() {
 		const scrollbar = Scrollbar.init(this.$refs.mainSroll);

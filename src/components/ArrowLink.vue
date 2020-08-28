@@ -54,4 +54,8 @@ export default {
 				width: .5em
 				transform: translateX(.3em)
 
+@media screen and (max-width: 768px)
+	.arrow-link
+		font-size: 2em
+
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<a href="#" class="logo">ИБ</a>
+		<router-link to="/" class="logo">ИБ</router-link>
 	</div>
 </template>
 
