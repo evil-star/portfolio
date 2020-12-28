@@ -46,12 +46,6 @@ export default {
 		return {
 			works: [
 				{
-					title: "Корпоративный сайт медицинского центра «Сердце»",
-					desc: "Копоративный сайт",
-					video: "centrserdce",
-					url: "https://centrserdce.ru/",
-				},
-				{
 					title: "Короротивный сайт «Морпосад Кабель»",
 					desc: "Корпоративный сайт",
 					video: "mpkabel",
@@ -62,6 +56,12 @@ export default {
 					desc: "Интернет-магазин",
 					video: "dymov",
 					url: "https://www.v-dymov.ru/"
+				},
+				{
+					title: "Корпоративный сайт медицинского центра «Сердце»",
+					desc: "Копоративный сайт",
+					video: "centrserdce",
+					url: "https://centrserdce.ru/",
 				},
 			],
 		};
