@@ -4,7 +4,11 @@
 		<NavBar></NavBar>
 		<div id="main-scroll" ref="mainSroll">
 			<div>
-				<transition name="page-slide" @beforeLeave="beforeLeave">
+				<transition
+					name="page-slide"
+					mode="out-in"
+					@beforeLeave="beforeLeave"
+				>
 					<router-view />
 				</transition>
 				<Footer></Footer>
@@ -16,14 +20,18 @@
 <style lang="sass">
 .page-slide-enter-active,
 .page-slide-leave-active
-	transition-delay: .7s
 	transition-duration: 0.3s
-	transition-property: opacity
-	transition-timing-function: ease
+	transition-property: transform, opacity
+	transition-timing-function: cubic-bezier(.77,0,.175,1)
 
 .page-slide-enter,
 .page-slide-leave-active
 	opacity: 0
+
+.page-slide-enter
+	transform: translateX(100%)
+.page-slide-leave-active
+	transform: translateX(-100%)
 </style>
 
 <script>
@@ -36,7 +44,9 @@ import Scrollbar from "smooth-scrollbar";
 
 export default {
 	data() {
-		return {};
+		return {
+			pageLeaveDelay: 0,
+		};
 	},
 	components: {
 		NavBar,
@@ -48,8 +58,10 @@ export default {
 			this.scrollTop = status.offset.y;
 		},
 		beforeLeave() {
-			this.$store.commit("toggleMenu");
-		}
+			if (this.$store.state.menu.isActive) {
+				this.$store.commit("toggleMenu");
+			}
+		},
 	},
 	mounted() {
 		const scrollbar = Scrollbar.init(this.$refs.mainSroll);
@@ -60,7 +72,7 @@ export default {
 			this.$store.commit("changePageScroll", status);
 		});
 	},
-	destroy() {
+	destroyed() {
 		Scrollbar.destroyAll();
 	},
 };

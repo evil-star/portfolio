@@ -8,19 +8,21 @@
 					проживающий<br />
 					в России, Казань.
 				</div>
-				<Button href="/" class="hero__button">Посмотреть работы</Button>
+				<router-link to="/works"><Button class="hero__button">Посмотреть работы</Button></router-link>
 			</div>
 		</div>
 
 		<div class="work">
 			<div class="container">
 				<WorkList :works="works"></WorkList>
-	
-				<div class="work__list" ref="skewText">
+
+				<!-- <div class="work__list" ref="skewText">
 					<div class="sub-text">Это ещё не все</div>
-					<br>
-					<ArrowLink href="#">все работы</ArrowLink>
-				</div>
+					<br />
+					<router-link to="/works"
+						><ArrowLink>все работы</ArrowLink></router-link
+					>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -47,24 +49,24 @@ export default {
 					title: "Корпоративный сайт медицинского центра «Сердце»",
 					desc: "Копоративный сайт",
 					video: "centrserdce",
-					url: "https://centrserdce.ru/"
+					url: "https://centrserdce.ru/",
 				},
 				{
 					title: "Короротивный сайт «Морпосад Кабель»",
 					desc: "Корпоративный сайт",
 					video: "mpkabel",
-					url: "https://www.mpkabel.ru/"
+					url: "https://www.mpkabel.ru/",
 				},
 				{
 					title: "Интернет-магазин «Дымов»",
 					desc: "Интернет-магазин",
-					video: "centrserdce",
-
-				}
+					video: "dymov",
+					url: "https://www.v-dymov.ru/"
+				},
 			],
 		};
 	},
 	name: "home",
-	components: { SlideText, ParticleText, Button, WorkList, ArrowLink }
+	components: { SlideText, ParticleText, Button, WorkList, ArrowLink },
 };
 </script>

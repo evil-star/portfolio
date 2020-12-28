@@ -54,7 +54,7 @@ export default {
 			VanillaTilt.init(this.$refs.video, this.tiltOptions);
 		},
 		parallax() {
-			if(window.innerWidth < 1200) return 0;
+			if (window.innerWidth < 1200 && !this.$refs.video.length) return 0;
 
 			const percent = percentageSeen(
 				this.$refs.info,
@@ -69,16 +69,15 @@ export default {
 		},
 		stopVideo() {
 			this.$refs.video.pause();
-		}
+		},
 	},
 	components: { Button },
 	mounted() {
 		this.initTilt();
 
-		window.addEventListener("scroll", this._.throttle(this.parallax, 200));
+		window.addEventListener("scroll", this.parallax);
 	},
-	destroy() {
-		this.$refs.video.vanillaTilt.destroy();
+	destroyed() {
 		window.removeEventListener("scroll", this.parallax);
 	},
 };
@@ -103,7 +102,6 @@ export default {
 		margin-bottom: 1.5em
 	&__info
 		padding: 3vh 0 3vh 3.5vw
-		transition: transform .5s ease-out
 		width: 30%
 		will-change: transform
 

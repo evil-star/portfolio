@@ -16,12 +16,12 @@ export default {
 			ctx: {},
 			particles: [],
 			colors: ["#000"],
-			textParticle: {},
 			amount: 0,
 			canvasOffset: {},
 			radius: 1,
 			particleRadius: 5,
 			sceneHeight: 0,
+			isAnimate: true
 		};
 	},
 	props: ["text"],
@@ -90,16 +90,18 @@ export default {
 			this.mouse.x = -9999;
 			this.mouse.y = -9999;
 		},
-		render(a) {
-			requestAnimationFrame(this.render);
-			this.ctx.clearRect(
-				0,
-				0,
-				this.$refs.scene.width,
-				this.$refs.scene.height
-			);
-			for (var i = 0; i < this.amount; i++) {
-				this.particles[i].render();
+		render() {
+			if(this.isAnimate) {
+				requestAnimationFrame(this.render);
+				this.ctx.clearRect(
+					0,
+					0,
+					this.$refs.scene.width,
+					this.$refs.scene.height
+				);
+				for (var i = 0; i < this.amount; i++) {
+					this.particles[i].render();
+				}
 			}
 		},
 	},
@@ -117,18 +119,19 @@ export default {
 		this.ww = this.$refs.scene.width = window.innerWidth;
 		this.wh = this.$refs.scene.height = this.sceneHeight;
 
-		window.addEventListener("resize", (e) => this.initScene(e));
-		window.addEventListener("mousemove", (e) => this.onMouseMove(e));
-		window.addEventListener("touchmove", (e) => this.onTouchMove(e));
-		window.addEventListener("touchend", (e) => this.onTouchEnd(e));
+		window.addEventListener("resize", this.initScene);
+		window.addEventListener("mousemove", this.onMouseMove);
+		window.addEventListener("touchmove", this.onTouchMove);
+		window.addEventListener("touchend", this.onTouchEnd);
 		this.initScene();
 		requestAnimationFrame(this.render);
 	},
-	destroy() {
-		window.removeEventListener("resize", (e) => this.initScene(e));
-		window.removeEventListener("mousemove", (e) => this.onMouseMove(e));
-		window.removeEventListener("touchmove", (e) => this.onTouchMove(e));
-		window.removeEventListener("touchend", (e) => this.onTouchEnd(e));
+	destroyed() {
+		window.removeEventListener("resize", this.initScene);
+		window.removeEventListener("mousemove", this.onMouseMove);
+		window.removeEventListener("touchmove", this.onTouchMove);
+		window.removeEventListener("touchend", this.onTouchEnd);
+		this.isAnimate = false;
 	},
 };
 </script>

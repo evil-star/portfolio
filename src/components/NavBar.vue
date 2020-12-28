@@ -3,9 +3,9 @@
 		<div class="container">
 			<div class="header__inner">
 				<Logo></Logo>
-				<div class="burger" @click="menuToggle">
+				<!-- <div class="burger" @click="menuToggle">
 					<span></span><span></span>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</header>

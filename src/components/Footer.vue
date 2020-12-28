@@ -35,10 +35,20 @@ export default {
 	&__inner
 		display: flex
 		align-items: center
+		flex-wrap: wrap
 	&__copyright
-		margin-right: 20px
+		margin-right: 15px
 		color: #fff
 		font-size: .8em
 	&__social
 		margin: 0 10px
+
+@media (max-width: 768px)
+	.footer
+		&__copyright
+			width: 100%
+			margin-bottom: 15px
+		&__social
+			&:nth-child(2)
+				margin-left: 0
 </style>

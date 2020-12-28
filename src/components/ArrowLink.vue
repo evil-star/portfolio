@@ -1,8 +1,8 @@
 <template>
-	<a class="arrow-link">
+	<div class="arrow-link">
 		<span class="arrow-link__text"><slot></slot></span>
 		<span class="arrow-link__arrow"></span>
-	</a>
+	</div>
 </template>
 
 <script>

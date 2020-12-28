@@ -1,15 +1,24 @@
 <template>
-	<a class="button">
-		<span class="button__text">
-			<slot></slot>
-		</span>
-		<i class="icon-right-arrow"></i>
-	</a>
+	<div>
+		<a v-if="href" :href="href" :target="target" class="button">
+			<span class="button__text">
+				<slot></slot>
+			</span>
+			<i class="icon-right-arrow"></i>
+		</a>
+		<div v-else class="button">
+			<span class="button__text">
+				<slot></slot>
+			</span>
+			<i class="icon-right-arrow"></i>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-	name: 'Button'
+	name: 'Button',
+	props: ["href", "target"],
 };
 </script>
 
