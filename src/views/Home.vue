@@ -8,11 +8,11 @@
 					проживающий<br />
 					в России, Казань.
 				</div>
-				<router-link to="/works"><Button class="hero__button">Посмотреть работы</Button></router-link>
+				<!-- <a><Button class="hero__button">Посмотреть работы</Button></a> -->
 			</div>
 		</div>
 
-		<div class="work">
+		<div class="work" id="works">
 			<div class="container">
 				<WorkList :works="works"></WorkList>
 
@@ -67,6 +67,6 @@ export default {
 		};
 	},
 	name: "home",
-	components: { SlideText, ParticleText, Button, WorkList, ArrowLink },
+	components: { SlideText, ParticleText, Button, WorkList, ArrowLink }
 };
 </script>
